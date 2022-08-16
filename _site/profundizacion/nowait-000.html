@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Cláusula nowait | Aprende OpenMP en paralelo.dev</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Cláusula nowait" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Con OpenMP podrás aprovechar todos los núcleos de tu CPU." />
+<meta property="og:description" content="Con OpenMP podrás aprovechar todos los núcleos de tu CPU." />
+<link rel="canonical" href="http://localhost:4000/profundizacion/nowait-000.html" />
+<meta property="og:url" content="http://localhost:4000/profundizacion/nowait-000.html" />
+<meta property="og:site_name" content="Aprende OpenMP en paralelo.dev" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cláusula nowait" />
+<script type="application/ld+json">
+{"headline":"Cláusula nowait","url":"http://localhost:4000/profundizacion/nowait-000.html","@type":"WebPage","description":"Con OpenMP podrás aprovechar todos los núcleos de tu CPU.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Aprende OpenMP en paralelo.dev" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Aprende OpenMP en paralelo.dev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <!-- <div class="trigger"><a class="page-link" href="/aceleradores/015-accel-000.html">Aceleradores</a><a class="page-link" href="/aceleradores/016-gpus-000.html">Aceleradores</a><a class="page-link" href="/aceleradores/017-host-device-000.html">Aceleradores</a><a class="page-link" href="/aceleradores/2021-12-06-037-target-000.html">Regiones paralelas y sincronización</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/introduccion/atomic-000.html">Directiva Atomic</a><a class="page-link" href="/introduccion/barrier-000.html">Directiva Barrier</a><a class="page-link" href="/profundizacion/collapse-000.html">Cláusula Collapse</a><a class="page-link" href="/introduccion/critical-000.html">Directiva Critical</a><a class="page-link" href="/introduccion/datos-000.html">Modelo de datos</a><a class="page-link" href="/introduccion/default-000.html">Cláusula Default</a><a class="page-link" href="/profundizacion/depend-000.html">Cláusula Depend</a><a class="page-link" href="/profundizacion/firstprivate-000.html">Cláusula firstprivate</a><a class="page-link" href="/profundizacion/for-000.html">Directiva for</a><a class="page-link" href="/introduccion/instalacion-000.html">Pre-requisitos</a><a class="page-link" href="/introduccion/instalacion-001.html">Instalación manual de LLVM/Clang/OpenMP</a><a class="page-link" href="/introduccion/instalacion-002.html">Instalación simplificada de LLVM/Clang/OpenMP</a><a class="page-link" href="/profundizacion/lastprivate-000.html">Cláusula Lastprivate</a><a class="page-link" href="/profundizacion/main.html">Nivel 2: Bucles paralelos y tareas concurrentes con OpenMP</a><a class="page-link" href="/introduccion/main.html">Nivel 1: Introducción a la programación paralela con OpenMP</a><a class="page-link" href="/introduccion/master-000.html">Directiva Master</a><a class="page-link" href="/introduccion/modelo-000.html">Modelo fork-join</a><a class="page-link" href="/profundizacion/nowait-000.html">Cláusula nowait</a><a class="page-link" href="/introduccion/para-que-000.html">¿Para qué sirve OpenMP?</a><a class="page-link" href="/introduccion/parallel-000.html">Directiva Parallel</a><a class="page-link" href="/profundizacion/parallel-for-000.html">Directiva combinada parallel for</a><a class="page-link" href="/introduccion/parallel-master-000.html">Directiva combinada Parallel Master</a><a class="page-link" href="/profundizacion/practice1-000.html">Práctica 1</a><a class="page-link" href="/introduccion/practice1-000.html">Práctica 1</a><a class="page-link" href="/profundizacion/practice2-000.html">Práctica 2</a><a class="page-link" href="/introduccion/practice2-000.html">Práctica 2</a><a class="page-link" href="/introduccion/private-000.html">Variables privadas con la cláusula Private</a><a class="page-link" href="/introduccion/prueba-000.html">Prueba de la instalación</a><a class="page-link" href="/introduccion/que-es-000.html">¿Qué es OpenMP?</a><a class="page-link" href="/profundizacion/reduction-000.html">Cláusula reduction</a><a class="page-link" href="/profundizacion/schedule-000.html">Cláusula Schedule</a><a class="page-link" href="/introduccion/sections-000.html">Directivas Sections and Section</a><a class="page-link" href="/introduccion/seq-vs-par-000.html">Ejecución secuencial vs Ejecución paralela</a><a class="page-link" href="/introduccion/seq-vs-par-001.html">Ejecución secuencial vs Ejecución paralela</a><a class="page-link" href="/introduccion/shared-000.html">Variables compartidas con la cláusula Shared</a><a class="page-link" href="/introduccion/single-000.html">Directiva Single</a><a class="page-link" href="/profundizacion/task-000.html">Directiva Task</a><a class="page-link" href="/profundizacion/taskgroup-000.html">Directiva Taskgroup</a><a class="page-link" href="/profundizacion/tasking-000.html">¿Qué son las tareas en OpenMP?</a><a class="page-link" href="/profundizacion/taskloop-000.html">Directiva Taskloop</a><a class="page-link" href="/profundizacion/taskwait-000.html">Directiva Taskwait</a></div> -->
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Cláusula nowait</h1>
+  </header>
+
+  <div class="post-content">
+    <table>
+  <tbody>
+    <tr>
+      <td><a href="for-000.html">Anterior</a></td>
+      <td><a href="parallel-for-000.html">Siguiente</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Hemos visto que ciertas directivas poseen una barrera implícita al final de la región demarcada (por ejemplo, <strong>single</strong>, <strong>for</strong>).
+Sin embargo, hay situaciones en las que se requiere eliminar dicha barrera y permitir que la ejecución continúe más allá de la región en cuestión, sin esperar a que los hilos salgan de ella. 
+Para tal fin se utiliza la cláusula <strong>nowait</strong>.</p>
+
+<h2 id="sintaxis-básica">Sintaxis básica</h2>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma omp parallel
+</span><span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">parallel</span> <span class="n">region</span> <span class="n">code</span><span class="o">&gt;</span>
+    
+    <span class="cp">#pragma omp for nowait
+</span>    <span class="k">for</span><span class="p">(...){</span>
+        <span class="o">&lt;</span><span class="n">loop</span> <span class="n">body</span> <span class="n">code</span><span class="o">&gt;</span>
+    <span class="p">}</span> <span class="c1">// no barrier here anymore</span>
+
+    <span class="o">&lt;</span><span class="n">parallel</span> <span class="n">region</span> <span class="n">code</span><span class="o">&gt;</span>
+<span class="p">}</span> <span class="c1">// implicit barrier here</span>
+</code></pre></div></div>
+<h2 id="ejemplo">Ejemplo</h2>
+<p>Vamos a imprimir las iteraciones del loop:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;omp.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"master thread=%d in serial region</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+
+    <span class="cp">#pragma omp parallel
+</span>    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"thread=%d in parallel region</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+        
+        <span class="cp">#pragma omp for nowait
+</span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">16</span> <span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">f</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"id=%d processed by thread=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+        <span class="p">}</span> <span class="c1">// no barrier here anymore</span>
+    
+        <span class="n">printf</span><span class="p">(</span><span class="s">"thread=%d says goodbye</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+    <span class="p">}</span> <span class="c1">// implicit barrier here</span>
+    
+    <span class="n">printf</span><span class="p">(</span><span class="s">"master thread=%d in serial region</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><a href="../codigo/nowait-000.c">Descarga el código aquí</a>.</p>
+
+<h3 id="cómo-compilar">¿Cómo compilar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang <span class="nt">-fopenmp</span> <span class="nt">-I</span>/home/user/llvm/llvm-build/projects/openmp/runtime/src/ 
+     <span class="nt">-o</span> nowait-000 nowait-000.c
+</code></pre></div></div>
+<h3 id="cómo-ejecutar">¿Cómo ejecutar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./nowait-000 
+</code></pre></div></div>
+<h3 id="salida">Salida</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>master <span class="nv">thread</span><span class="o">=</span>0 <span class="k">in </span>serial region
+<span class="nv">thread</span><span class="o">=</span>0 <span class="k">in </span>parallel region
+<span class="nb">id</span><span class="o">=</span>0 processed by <span class="nv">thread</span><span class="o">=</span>0
+<span class="nb">id</span><span class="o">=</span>1 processed by <span class="nv">thread</span><span class="o">=</span>0
+<span class="nb">id</span><span class="o">=</span>2 processed by <span class="nv">thread</span><span class="o">=</span>0
+<span class="nb">id</span><span class="o">=</span>3 processed by <span class="nv">thread</span><span class="o">=</span>0
+<span class="nv">thread</span><span class="o">=</span>0 says goodbye
+<span class="nv">thread</span><span class="o">=</span>2 <span class="k">in </span>parallel region
+<span class="nb">id</span><span class="o">=</span>8 processed by <span class="nv">thread</span><span class="o">=</span>2
+<span class="nv">thread</span><span class="o">=</span>1 <span class="k">in </span>parallel region
+<span class="nb">id</span><span class="o">=</span>9 processed by <span class="nv">thread</span><span class="o">=</span>2
+<span class="nb">id</span><span class="o">=</span>10 processed by <span class="nv">thread</span><span class="o">=</span>2
+<span class="nb">id</span><span class="o">=</span>11 processed by <span class="nv">thread</span><span class="o">=</span>2
+<span class="nv">thread</span><span class="o">=</span>2 says goodbye
+<span class="nv">thread</span><span class="o">=</span>3 <span class="k">in </span>parallel region
+<span class="nb">id</span><span class="o">=</span>12 processed by <span class="nv">thread</span><span class="o">=</span>3
+<span class="nb">id</span><span class="o">=</span>13 processed by <span class="nv">thread</span><span class="o">=</span>3
+<span class="nb">id</span><span class="o">=</span>14 processed by <span class="nv">thread</span><span class="o">=</span>3
+<span class="nb">id</span><span class="o">=</span>15 processed by <span class="nv">thread</span><span class="o">=</span>3
+<span class="nv">thread</span><span class="o">=</span>3 says goodbye
+<span class="nb">id</span><span class="o">=</span>4 processed by <span class="nv">thread</span><span class="o">=</span>1
+<span class="nb">id</span><span class="o">=</span>5 processed by <span class="nv">thread</span><span class="o">=</span>1
+<span class="nb">id</span><span class="o">=</span>6 processed by <span class="nv">thread</span><span class="o">=</span>1
+<span class="nb">id</span><span class="o">=</span>7 processed by <span class="nv">thread</span><span class="o">=</span>1
+<span class="nv">thread</span><span class="o">=</span>1 says goodbye
+master <span class="nv">thread</span><span class="o">=</span>0 <span class="k">in </span>serial region
+</code></pre></div></div>
+<p>Cada hilo entra al bucle, imprime sus iteraciones, sale del bucle sin esperar a los demás, y se despide. 
+La sincronización sólo sucede al final de la región paralela.</p>
+
+<h2 id="preguntas">Preguntas</h2>
+<ul>
+  <li><em>Modifica el programa de tal manera que hayan dos bucles anotados con la directiva for y la cláusula nowait.</em></li>
+  <li><em>¿Qué comportamiento se observa?</em></li>
+  <li><em>¿Qué pasa si quitamos las cláusulas nowait?</em></li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="for-000.html">Anterior</a></td>
+      <td><a href="parallel-for-000.html">Siguiente</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="coursetitle">Estás en el Nivel 2: Bucles paralelos y tareas concurrentes con OpenMP. <a href="main.html">¿Deseas volver al inicio?</a> </div>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Aprende OpenMP en paralelo.dev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Aprende OpenMP en paralelo.dev</li><li><a class="u-email" href="mailto:info@paralelo.dev">info@paralelo.dev</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/paralelodev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">paralelodev</span></a></li><li><a href="https://www.twitter.com/paralelodev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">paralelodev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Con OpenMP podrás aprovechar todos los núcleos de tu CPU.  </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

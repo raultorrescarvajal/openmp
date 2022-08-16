@@ -1,0 +1,11 @@
+# Taller de OpenMP
+## Aceleradores
+### Directiva `target`
+
+La directiva `target` se utiliza para trasladar la ejecución de un bloque de código del host a un device específico.
+
+#### Sintaxis
+
+`#pragma omp target [device(<device number>)]`
+
+La cláusula `device` es opcional. Si no se especifica, se asume el device por defecto, que sule ser el device 0.

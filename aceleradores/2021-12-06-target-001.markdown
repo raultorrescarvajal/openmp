@@ -1,0 +1,8 @@
+# Taller de OpenMP
+## Aceleradores
+### Directiva `target`
+#### Ejemplos
+
+`#pragma omp target device(0)
+{}
+`

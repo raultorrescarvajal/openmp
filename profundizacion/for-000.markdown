@@ -1,0 +1,217 @@
+---
+layout: page
+title:  "Directiva for"
+---
+[Anterior](main.html) | [Siguiente](nowait-000.html)
+
+Los bucles dentro de una región paralela pueden beneficiarse de la existencia de múltiples hilos. 
+Cada hilo se puede encargar de determinadas iteraciones del bucle, y de manera mancomunada con los demás hilos, acelerar la ejecución de estos bloques de código.
+Los hilos se sincronizan al finalizar el bucle.
+En efecto, la manera más obvia de acelerar la ejecución de un programa es paralelizar sus bucles.
+
+## Sintaxis básica
+```c
+#pragma omp parallel
+{
+    <parallel region code>
+    
+    #pragma omp for 
+    for(...){
+        <loop body code>
+    } // implicit barrier here
+
+    <parallel region code>
+} // implicit barrier here
+``` 
+## Ejemplo 1
+Vamos a distribuir las iteraciones del bucle entre los hilos disponibles:
+```c
+#include <stdio.h>
+#include <omp.h>
+
+int main(){
+    int m = omp_get_thread_num();
+    printf("master thread=%d in serial region\n", m);
+
+    #pragma omp parallel
+    {
+        int t = omp_get_thread_num();
+        printf("thread=%d in parallel region\n", t);
+        
+        #pragma omp for
+        for(int i=0; i<16 ; i++){
+            int f = omp_get_thread_num();
+            printf("id=%d processed by thread=%d\n", i, f);
+        } // implicit barrier here
+    
+        printf("thread=%d says goodbye\n", t);
+    } // implicit barrier here
+    
+    printf("master thread=%d in serial region\n", m);
+}
+```
+[Descarga el código aquí](../codigo/for-000.c).
+
+### ¿Cómo compilar?
+```bash
+clang -fopenmp -I/home/user/llvm/llvm-build/projects/openmp/runtime/src/ 
+     -o for-000 for-000.c
+```
+### ¿Cómo ejecutar?
+```bash
+./for-000 
+```
+### Salida
+```bash
+master thread=0 in serial region
+thread=2 in parallel region
+thread=1 in parallel region
+thread=3 in parallel region
+id=12 processed by thread=3
+id=13 processed by thread=3
+id=14 processed by thread=3
+id=15 processed by thread=3
+id=4 processed by thread=1
+id=5 processed by thread=1
+id=6 processed by thread=1
+id=7 processed by thread=1
+thread=0 in parallel region
+id=0 processed by thread=0
+id=1 processed by thread=0
+id=2 processed by thread=0
+id=3 processed by thread=0
+id=8 processed by thread=2
+id=9 processed by thread=2
+id=10 processed by thread=2
+id=11 processed by thread=2
+thread=1 says goodbye
+thread=3 says goodbye
+thread=2 says goodbye
+thread=0 says goodbye
+master thread=0 in serial region
+```
+Cada hilo se hizo cargo de 4 de las 16 iteraciones. Las iteraciones de cada hilo fueron consecutivas.
+
+## Ejemplo 2
+¿Qué pasa si no usamos la directiva **for**?:
+```c
+#include <stdio.h>
+#include <omp.h>
+
+int main(){
+    int m = omp_get_thread_num();
+    printf("master thread=%d in serial region\n", m);
+
+    #pragma omp parallel
+    {
+        int t = omp_get_thread_num();
+        printf("thread=%d in parallel region\n", t);
+        
+        for(int i=0; i<16 ; i++){
+            int f = omp_get_thread_num();
+            printf("id=%d processed by thread=%d\n", i, f);
+        }
+    
+        printf("thread=%d says goodbye\n", t);
+    } // implicit barrier here
+    
+    printf("master thread=%d in serial region\n", m);
+}
+```
+[Descarga el código aquí](../codigo/for-001.c).
+
+### ¿Cómo compilar?
+```bash
+clang -fopenmp -I/home/user/llvm/llvm-build/projects/openmp/runtime/src/ 
+     -o for-001 for-001.c
+```
+### ¿Cómo ejecutar?
+```bash
+./for-001
+```
+### Salida
+```bash
+master thread=0 in serial region
+thread=0 in parallel region
+id=0 processed by thread=0
+id=1 processed by thread=0
+id=2 processed by thread=0
+id=3 processed by thread=0
+id=4 processed by thread=0
+id=5 processed by thread=0
+thread=2 in parallel region
+id=0 processed by thread=2
+id=1 processed by thread=2
+id=2 processed by thread=2
+id=3 processed by thread=2
+id=4 processed by thread=2
+id=5 processed by thread=2
+id=6 processed by thread=2
+id=7 processed by thread=2
+id=8 processed by thread=2
+id=9 processed by thread=2
+id=10 processed by thread=2
+id=11 processed by thread=2
+id=12 processed by thread=2
+id=13 processed by thread=2
+id=14 processed by thread=2
+id=15 processed by thread=2
+thread=2 says goodbye
+thread=1 in parallel region
+id=0 processed by thread=1
+id=1 processed by thread=1
+id=2 processed by thread=1
+id=3 processed by thread=1
+id=4 processed by thread=1
+id=5 processed by thread=1
+id=6 processed by thread=1
+id=7 processed by thread=1
+id=8 processed by thread=1
+id=9 processed by thread=1
+id=10 processed by thread=1
+id=11 processed by thread=1
+id=12 processed by thread=1
+id=13 processed by thread=1
+id=14 processed by thread=1
+id=15 processed by thread=1
+thread=1 says goodbye
+id=6 processed by thread=0
+id=7 processed by thread=0
+id=8 processed by thread=0
+id=9 processed by thread=0
+id=10 processed by thread=0
+id=11 processed by thread=0
+id=12 processed by thread=0
+id=13 processed by thread=0
+id=14 processed by thread=0
+id=15 processed by thread=0
+thread=0 says goodbye
+thread=3 in parallel region
+id=0 processed by thread=3
+id=1 processed by thread=3
+id=2 processed by thread=3
+id=3 processed by thread=3
+id=4 processed by thread=3
+id=5 processed by thread=3
+id=6 processed by thread=3
+id=7 processed by thread=3
+id=8 processed by thread=3
+id=9 processed by thread=3
+id=10 processed by thread=3
+id=11 processed by thread=3
+id=12 processed by thread=3
+id=13 processed by thread=3
+id=14 processed by thread=3
+id=15 processed by thread=3
+thread=3 says goodbye
+master thread=0 in serial region
+```
+En este caso, todos los hilos ejecutaron el bucle de manera redundante. 
+
+## Preguntas
+* _Modifica el programa de tal manera que se ejecuten dos bucles en lugar de uno._
+* _¿Cómo harías para paralelizar el bucle interior también?_
+
+[Anterior](main.html) | [Siguiente](nowait-000.html)
+
+<div class=coursetitle>Estás en el Nivel 2: Bucles paralelos y tareas concurrentes con OpenMP. <a href="main.html">¿Deseas volver al inicio?</a> </div>

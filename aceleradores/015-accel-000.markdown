@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Aceleradores"
+categories: taller devices
+---
+[Anterior](../../../../tasks/2021/12/06/033-depend-000.html) | [Siguiente](035-gpus-000.html)
+
+## ¿Qué es un acelerador?
+...
+
+[Anterior](../../../../tasks/2021/12/06/033-depend-000.html) | [Siguiente](035-gpus-000.html)

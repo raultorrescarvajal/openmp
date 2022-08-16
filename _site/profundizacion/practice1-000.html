@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Práctica 1 | Aprende OpenMP en paralelo.dev</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Práctica 1" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Con OpenMP podrás aprovechar todos los núcleos de tu CPU." />
+<meta property="og:description" content="Con OpenMP podrás aprovechar todos los núcleos de tu CPU." />
+<link rel="canonical" href="http://localhost:4000/profundizacion/practice1-000.html" />
+<meta property="og:url" content="http://localhost:4000/profundizacion/practice1-000.html" />
+<meta property="og:site_name" content="Aprende OpenMP en paralelo.dev" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Práctica 1" />
+<script type="application/ld+json">
+{"headline":"Práctica 1","url":"http://localhost:4000/profundizacion/practice1-000.html","@type":"WebPage","description":"Con OpenMP podrás aprovechar todos los núcleos de tu CPU.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Aprende OpenMP en paralelo.dev" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Aprende OpenMP en paralelo.dev</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <!-- <div class="trigger"><a class="page-link" href="/aceleradores/015-accel-000.html">Aceleradores</a><a class="page-link" href="/aceleradores/016-gpus-000.html">Aceleradores</a><a class="page-link" href="/aceleradores/017-host-device-000.html">Aceleradores</a><a class="page-link" href="/aceleradores/2021-12-06-037-target-000.html">Regiones paralelas y sincronización</a><a class="page-link" href="/about/">About</a><a class="page-link" href="/introduccion/atomic-000.html">Directiva Atomic</a><a class="page-link" href="/introduccion/barrier-000.html">Directiva Barrier</a><a class="page-link" href="/profundizacion/collapse-000.html">Cláusula Collapse</a><a class="page-link" href="/introduccion/critical-000.html">Directiva Critical</a><a class="page-link" href="/introduccion/datos-000.html">Modelo de datos</a><a class="page-link" href="/introduccion/default-000.html">Cláusula Default</a><a class="page-link" href="/profundizacion/depend-000.html">Cláusula Depend</a><a class="page-link" href="/profundizacion/firstprivate-000.html">Cláusula firstprivate</a><a class="page-link" href="/profundizacion/for-000.html">Directiva for</a><a class="page-link" href="/introduccion/instalacion-000.html">Pre-requisitos</a><a class="page-link" href="/introduccion/instalacion-001.html">Instalación manual de LLVM/Clang/OpenMP</a><a class="page-link" href="/introduccion/instalacion-002.html">Instalación simplificada de LLVM/Clang/OpenMP</a><a class="page-link" href="/profundizacion/lastprivate-000.html">Cláusula Lastprivate</a><a class="page-link" href="/profundizacion/main.html">Nivel 2: Bucles paralelos y tareas concurrentes con OpenMP</a><a class="page-link" href="/introduccion/main.html">Nivel 1: Introducción a la programación paralela con OpenMP</a><a class="page-link" href="/introduccion/master-000.html">Directiva Master</a><a class="page-link" href="/introduccion/modelo-000.html">Modelo fork-join</a><a class="page-link" href="/profundizacion/nowait-000.html">Cláusula nowait</a><a class="page-link" href="/introduccion/para-que-000.html">¿Para qué sirve OpenMP?</a><a class="page-link" href="/introduccion/parallel-000.html">Directiva Parallel</a><a class="page-link" href="/profundizacion/parallel-for-000.html">Directiva combinada parallel for</a><a class="page-link" href="/introduccion/parallel-master-000.html">Directiva combinada Parallel Master</a><a class="page-link" href="/profundizacion/practice1-000.html">Práctica 1</a><a class="page-link" href="/introduccion/practice1-000.html">Práctica 1</a><a class="page-link" href="/profundizacion/practice2-000.html">Práctica 2</a><a class="page-link" href="/introduccion/practice2-000.html">Práctica 2</a><a class="page-link" href="/introduccion/private-000.html">Variables privadas con la cláusula Private</a><a class="page-link" href="/introduccion/prueba-000.html">Prueba de la instalación</a><a class="page-link" href="/introduccion/que-es-000.html">¿Qué es OpenMP?</a><a class="page-link" href="/profundizacion/reduction-000.html">Cláusula reduction</a><a class="page-link" href="/profundizacion/schedule-000.html">Cláusula Schedule</a><a class="page-link" href="/introduccion/sections-000.html">Directivas Sections and Section</a><a class="page-link" href="/introduccion/seq-vs-par-000.html">Ejecución secuencial vs Ejecución paralela</a><a class="page-link" href="/introduccion/seq-vs-par-001.html">Ejecución secuencial vs Ejecución paralela</a><a class="page-link" href="/introduccion/shared-000.html">Variables compartidas con la cláusula Shared</a><a class="page-link" href="/introduccion/single-000.html">Directiva Single</a><a class="page-link" href="/profundizacion/task-000.html">Directiva Task</a><a class="page-link" href="/profundizacion/taskgroup-000.html">Directiva Taskgroup</a><a class="page-link" href="/profundizacion/tasking-000.html">¿Qué son las tareas en OpenMP?</a><a class="page-link" href="/profundizacion/taskloop-000.html">Directiva Taskloop</a><a class="page-link" href="/profundizacion/taskwait-000.html">Directiva Taskwait</a></div> -->
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Práctica 1</h1>
+  </header>
+
+  <div class="post-content">
+    <table>
+  <tbody>
+    <tr>
+      <td><a href="reduction-000.html">Anterior</a></td>
+      <td><a href="tasking-000.html">Siguiente</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Es hora de poner en práctica lo que hemos aprendido acerca de las directivas de OpenMP que nos permiten paralelizar nuestros bucles.
+Los siguientes bucles está escritos de manera secuencial.
+Tu misión es paralelizarlos utilizando las directivas aprendidas.</p>
+
+<h2 id="programa-secuencial-1">Programa secuencial 1:</h2>
+<p>Calcula C como la suma de los vectores A y B, y luego suma todos los elementos de C.</p>
+<ul>
+  <li>Distribuye las iteraciones del bucle en bloques de 3 elementos de manera estática.</li>
+  <li>Imprime en pantalla el número de hilo con cada resultado.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span><span class="c1">// pista: se debe incluir una cabecera que permita</span>
+<span class="c1">// enlazar las funciones del runtime</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="cm">/* calcula C como la suma de los vectores A y B, y luego
+       suma todos los elementos de C.
+       (- distribuye las iteraciones del bucle en bloques de 
+          4 elementos de manera estática
+        - imprime en pantalla el número de hilo con cada resultado) */</span>
+
+    <span class="c1">// pista: las siguientes variables pueden accederse </span>
+    <span class="c1">// desde cualquier hilo</span>
+    <span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">B</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">C</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span> <span class="p">{};</span>
+
+    <span class="c1">// pista: esta variable acumula el valor de la operación +</span>
+    <span class="c1">// en cada iteración</span>
+    <span class="kt">int</span> <span class="n">total</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// pista: podemos usar una directiva combinada </span>
+    <span class="c1">// para paralelizar este bucle sin escribir mucho código</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">16</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"C[%d]=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"total=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">total</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><a href="../codigo/prof-practice-sequential-000.c">Descarga el código aquí</a>.</p>
+
+<h3 id="cómo-compilar">¿Cómo compilar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang <span class="nt">-o</span> prof-practice-sequential-000 prof-practice-sequential-000.c
+</code></pre></div></div>
+<h3 id="cómo-ejecutar">¿Cómo ejecutar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./prof-practice-sequential-000
+</code></pre></div></div>
+<h3 id="salida">Salida</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C[0]<span class="o">=</span>15
+C[1]<span class="o">=</span>15
+C[2]<span class="o">=</span>15
+C[3]<span class="o">=</span>15
+C[4]<span class="o">=</span>15
+C[5]<span class="o">=</span>15
+C[6]<span class="o">=</span>15
+C[7]<span class="o">=</span>15
+C[8]<span class="o">=</span>15
+C[9]<span class="o">=</span>15
+C[10]<span class="o">=</span>15
+C[11]<span class="o">=</span>15
+C[12]<span class="o">=</span>15
+C[13]<span class="o">=</span>15
+C[14]<span class="o">=</span>15
+C[15]<span class="o">=</span>15
+<span class="nv">total</span><span class="o">=</span>240
+</code></pre></div></div>
+<h3 id="pregunta">Pregunta</h3>
+<p>¿Usando 4 hilos, cuál de los hilos realizó más iteraciones y por qué?</p>
+
+<h2 id="programa-paralelo-1">Programa paralelo 1:</h2>
+<p>Apóyate en las pistas dejadas en el código secuencial para crear tu propia versión paralela:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va tu código ...
+</code></pre></div></div>
+
+<h3 id="cómo-compilar-1">¿Cómo compilar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang <span class="nt">-fopenmp</span> <span class="nt">-I</span>/home/user/llvm/llvm-build/projects/openmp/runtime/src/ 
+     <span class="nt">-o</span> prof-practice-parallel-000 prof-practice-parallel-000.c
+</code></pre></div></div>
+<h3 id="cómo-ejecutar-1">¿Cómo ejecutar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./prof-practice-parallel-000 
+</code></pre></div></div>
+<h3 id="salida-1">Salida</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va la salida de tu programa paralelo ...
+</code></pre></div></div>
+<h3 id="respuesta">Respuesta</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va tu respuesta a la pregunta ...
+</code></pre></div></div>
+
+<h2 id="programa-secuencial-2">Programa secuencial 2:</h2>
+<p>Calcula C como la resta de los vectores A y B más un offset.</p>
+<ul>
+  <li>Distribuye las iteraciones del bucle en bloques de 5 elementos de manera estática.</li>
+  <li>Imprime en pantalla el número de hilo con cada resultado.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span><span class="c1">// pista: se debe incluir una cabecera que permita</span>
+<span class="c1">// enlazar las funciones del runtime</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="cm">/* calcula C como la resta de los vectores A y B más un offset.
+       (- distribuye las iteraciones del bucle en bloques de 
+          5 elementos de manera estática
+        - imprime en pantalla el número de hilo con cada resultado) */</span>
+
+    <span class="c1">// pista: las siguientes variables pueden accederse </span>
+    <span class="c1">// desde cualquier hilo</span>
+    <span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">B</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">C</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span> <span class="p">{};</span>
+
+    <span class="c1">// pista: cada iteración debe tener su propia copia de offset</span>
+    <span class="kt">int</span> <span class="n">offset</span><span class="o">=</span><span class="mi">33</span><span class="p">;</span>
+
+    <span class="c1">// pista: debemos imprimir el valor de thisOffset de la última iteración</span>
+    <span class="kt">int</span> <span class="n">thisOffset</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// pista: podemos usar una directiva combinada </span>
+    <span class="c1">// para paralelizar este bucle sin escribir mucho código</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">16</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">thisOffset</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>  
+        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">thisOffset</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"C[%d]=%d, thisOffset=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">thisOffset</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"thisOffset=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">thisOffset</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><a href="../codigo/prof-practice-sequential-001.c">Descarga el código aquí</a>.</p>
+
+<h3 id="cómo-compilar-2">¿Cómo compilar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang <span class="nt">-o</span> prof-practice-sequential-001 prof-practice-sequential-001.c
+</code></pre></div></div>
+<h3 id="cómo-ejecutar-2">¿Cómo ejecutar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./prof-practice-sequential-001
+</code></pre></div></div>
+<h3 id="salida-2">Salida</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C[0]<span class="o">=</span><span class="nt">-15</span>, <span class="nv">thisOffset</span><span class="o">=</span>0
+C[1]<span class="o">=</span>20, <span class="nv">thisOffset</span><span class="o">=</span>33
+C[2]<span class="o">=</span>55, <span class="nv">thisOffset</span><span class="o">=</span>66
+C[3]<span class="o">=</span>90, <span class="nv">thisOffset</span><span class="o">=</span>99
+C[4]<span class="o">=</span>125, <span class="nv">thisOffset</span><span class="o">=</span>132
+C[5]<span class="o">=</span>160, <span class="nv">thisOffset</span><span class="o">=</span>165
+C[6]<span class="o">=</span>195, <span class="nv">thisOffset</span><span class="o">=</span>198
+C[7]<span class="o">=</span>230, <span class="nv">thisOffset</span><span class="o">=</span>231
+C[8]<span class="o">=</span>265, <span class="nv">thisOffset</span><span class="o">=</span>264
+C[9]<span class="o">=</span>300, <span class="nv">thisOffset</span><span class="o">=</span>297
+C[10]<span class="o">=</span>335, <span class="nv">thisOffset</span><span class="o">=</span>330
+C[11]<span class="o">=</span>370, <span class="nv">thisOffset</span><span class="o">=</span>363
+C[12]<span class="o">=</span>405, <span class="nv">thisOffset</span><span class="o">=</span>396
+C[13]<span class="o">=</span>440, <span class="nv">thisOffset</span><span class="o">=</span>429
+C[14]<span class="o">=</span>475, <span class="nv">thisOffset</span><span class="o">=</span>462
+C[15]<span class="o">=</span>510, <span class="nv">thisOffset</span><span class="o">=</span>495
+<span class="nv">thisOffset</span><span class="o">=</span>495
+</code></pre></div></div>
+<h3 id="pregunta-1">Pregunta</h3>
+<p>¿Qué sucede si las variables <code class="language-plaintext highlighter-rouge">offset</code> and <code class="language-plaintext highlighter-rouge">thisOffset</code> se mantienen privadas?</p>
+
+<h2 id="programa-paralelo-2">Programa paralelo 2:</h2>
+<p>Apóyate en las pistas dejadas en el código secuencial para crear tu propia versión paralela:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va tu código ...
+</code></pre></div></div>
+
+<h3 id="cómo-compilar-3">¿Cómo compilar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang <span class="nt">-fopenmp</span> <span class="nt">-I</span>/home/user/llvm/llvm-build/projects/openmp/runtime/src/ 
+     <span class="nt">-o</span> prof-practice-parallel-001 prof-practice-parallel-001.c
+</code></pre></div></div>
+<h3 id="cómo-ejecutar-3">¿Cómo ejecutar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./prof-practice-parallel-001
+</code></pre></div></div>
+<h3 id="salida-3">Salida</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va la salida de tu programa paralelo ...
+</code></pre></div></div>
+<h3 id="respuesta-1">Respuesta</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va tu respuesta a la pregunta ...
+</code></pre></div></div>
+
+<h2 id="programa-secuencial-3">Programa secuencial 3:</h2>
+<p>Calcula C como la resta de las matrices A y B más un offset.</p>
+<ul>
+  <li>Distribuye las iteraciones del bucle en bloques de 5 elementos de manera estática.</li>
+  <li>Imprime en pantalla el número de hilo con cada resultado.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span><span class="c1">// pista: se debe incluir una cabecera que permita</span>
+<span class="c1">// enlazar las funciones del runtime</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="cm">/* calcula C como la resta de las matrices A y B más un offset.
+       (- distribuye las iteraciones del bucle en bloques de 
+          5 elementos de manera estática
+        - imprime en pantalla el número de hilo con cada resultado) */</span>
+
+    <span class="c1">// pista: las siguientes variables pueden accederse </span>
+    <span class="c1">// desde cualquier hilo</span>
+    <span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},{</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">},{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">},{</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">}</span> <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">B</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span> <span class="p">{</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">},{</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">},{</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">},{</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">}</span> <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">C</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span> <span class="p">{</span> <span class="p">{},{},{},{}</span> <span class="p">};</span>
+
+    <span class="c1">// pista: cada iteración debe tener su propia copia de offset</span>
+    <span class="kt">int</span> <span class="n">offset</span><span class="o">=</span><span class="mi">33</span><span class="p">;</span>
+
+    <span class="c1">// pista: debemos imprimir el valor de thisOffset de la última iteración</span>
+    <span class="kt">int</span> <span class="n">thisOffset</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// pista: podemos usar una directiva con una cláusula que paraleliza </span>
+    <span class="c1">// ambos bucles como si fueran uno solo</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+            <span class="n">thisOffset</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span>  
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">thisOffset</span><span class="p">;</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"C[%d][%d]=%d, thisOffset=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">thisOffset</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"thisOffset=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">thisOffset</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><a href="../codigo/prof-practice-sequential-002.c">Descarga el código aquí</a>.</p>
+
+<h3 id="cómo-compilar-4">¿Cómo compilar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang <span class="nt">-o</span> prof-practice-sequential-002 prof-practice-sequential-002.c
+</code></pre></div></div>
+<h3 id="cómo-ejecutar-4">¿Cómo ejecutar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./prof-practice-sequential-002
+</code></pre></div></div>
+<h3 id="salida-4">Salida</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C[0][0]<span class="o">=</span><span class="nt">-15</span>, <span class="nv">thisOffset</span><span class="o">=</span>0
+C[0][1]<span class="o">=</span>20, <span class="nv">thisOffset</span><span class="o">=</span>33
+C[0][2]<span class="o">=</span>55, <span class="nv">thisOffset</span><span class="o">=</span>66
+C[0][3]<span class="o">=</span>90, <span class="nv">thisOffset</span><span class="o">=</span>99
+C[1][0]<span class="o">=</span>125, <span class="nv">thisOffset</span><span class="o">=</span>132
+C[1][1]<span class="o">=</span>160, <span class="nv">thisOffset</span><span class="o">=</span>165
+C[1][2]<span class="o">=</span>195, <span class="nv">thisOffset</span><span class="o">=</span>198
+C[1][3]<span class="o">=</span>230, <span class="nv">thisOffset</span><span class="o">=</span>231
+C[2][0]<span class="o">=</span>265, <span class="nv">thisOffset</span><span class="o">=</span>264
+C[2][1]<span class="o">=</span>300, <span class="nv">thisOffset</span><span class="o">=</span>297
+C[2][2]<span class="o">=</span>335, <span class="nv">thisOffset</span><span class="o">=</span>330
+C[2][3]<span class="o">=</span>370, <span class="nv">thisOffset</span><span class="o">=</span>363
+C[3][0]<span class="o">=</span>405, <span class="nv">thisOffset</span><span class="o">=</span>396
+C[3][1]<span class="o">=</span>440, <span class="nv">thisOffset</span><span class="o">=</span>429
+C[3][2]<span class="o">=</span>475, <span class="nv">thisOffset</span><span class="o">=</span>462
+C[3][3]<span class="o">=</span>510, <span class="nv">thisOffset</span><span class="o">=</span>495
+<span class="nv">thisOffset</span><span class="o">=</span>495
+</code></pre></div></div>
+<h2 id="programa-paralelo-3">Programa paralelo 3:</h2>
+<p>Apóyate en las pistas dejadas en el código secuencial para crear tu propia versión paralela:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va tu código ...
+</code></pre></div></div>
+
+<h3 id="cómo-compilar-5">¿Cómo compilar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang <span class="nt">-fopenmp</span> <span class="nt">-I</span>/home/user/llvm/llvm-build/projects/openmp/runtime/src/ 
+     <span class="nt">-o</span> prof-practice-parallel-002 prof-practice-parallel-002.c
+</code></pre></div></div>
+<h3 id="cómo-ejecutar-5">¿Cómo ejecutar?</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./prof-practice-parallel-002
+</code></pre></div></div>
+<h3 id="salida-5">Salida</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Aquí va la salida de tu programa paralelo ...
+</code></pre></div></div>
+
+<table>
+  <tbody>
+    <tr>
+      <td><a href="reduction-000.html">Anterior</a></td>
+      <td><a href="tasking-000.html">Siguiente</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="coursetitle">Estás en el Nivel 2: Bucles paralelos y tareas concurrentes con OpenMP. <a href="main.html">¿Deseas volver al inicio?</a> </div>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Aprende OpenMP en paralelo.dev</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Aprende OpenMP en paralelo.dev</li><li><a class="u-email" href="mailto:info@paralelo.dev">info@paralelo.dev</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/paralelodev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">paralelodev</span></a></li><li><a href="https://www.twitter.com/paralelodev"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">paralelodev</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Con OpenMP podrás aprovechar todos los núcleos de tu CPU.  </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

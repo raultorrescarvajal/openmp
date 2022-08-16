@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Aceleradores"
+categories: taller devices
+---
+[Anterior](034-accel-000.html) | [Siguiente](036-host-device-000.html)
+
+## ¿Qué son las GPUs?
+...
+
+[Anterior](034-accel-000.html) | [Siguiente](036-host-device-000.html)
